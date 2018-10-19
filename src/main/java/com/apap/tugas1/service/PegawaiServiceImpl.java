@@ -39,6 +39,11 @@ public class PegawaiServiceImpl implements PegawaiService {
 		return totalGaji;
 	}
 
+	@Override
+	public PegawaiModel getPegawaiById(Long id) {
+		return pegawaiDb.getOne(id);
+	}
+
 //	@Override
 //	//untuk menambahkan pegawai
 //	public void addPegawai(PegawaiModel pegawai) {

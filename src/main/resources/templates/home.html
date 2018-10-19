@@ -4,37 +4,78 @@
 		<title  th:replace="fragments/fragment :: headerFragment (title='Home')"></title>
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
 	</head>
-	<nav th:replace="fragments/fragment :: navbar"></nav>
+
 	
 	<body>
-	
+		<div style="padding: 32px">
 		<h1>Sistem Informasi Kepegawaian</h1>
-		<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
-		<br>
-		<h2>Lihat data kepegawaian berdasarkan NIP</h2>
-		
-		<form th:action="@{/pegawai}" method="GET">
-			Masukkan Nomor Induk Kepegawaian <br>
-			<input type="text" name="pegawaiNip"/> <br>
-			<button type="submit">Lihat</button>
-		</form>
-		<br>
-		<form th:action="@{/jabatan/view}" method="GET">
-			Lihat Detail Jabatan
-			
-			<select type="text" name="idJabatan" class="form-control">
-				<option>pilih jabatan</option>
-				
-				<option th:each="jabatan:${listJabatan}" 
-				th:value="${jabatan.id}"
-				th:text="${jabatan.nama}"></option>
-			</select>
-			
-			<button type="submit">Lihat</button>
-		</form>
-		
-		<a th:href="@{/}">Home</a>
-		<a th:href="@{/jabatan/tambah}">Tambah Jabatan</a>
+		<h3>Selamat datang di Sistem Informasi Kepegawaian</h3> <br>
+	
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header" >
+							<h3>Lihat data kepegawaian berdasarkan NIP</h3>
+						</div>
+						<form th:action="@{/pegawai}" method="GET">
+							<div class="card-body">	
+								<label for="name">Masukkan Nomor Induk Kepegawaian</label>
+								<input type="text" name="pegawaiNip" class="form-control"/><br>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+						 	<h3>Lihat Detail Jabatan Berdasarkan NIP</h3>
+						</div>
+						<form th:action="@{/jabatan/view}" method="GET">
+							<div class="card-body">
+								<label for="name">Pilih Jabatan</label>
+								<select type="text" name="idJabatan" class="form-control">
+									
+									<option th:each="jabatan:${listJabatan}" 
+									th:value="${jabatan.id}"
+									th:text="${jabatan.nama}"></option>
+								</select>
+								<br>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+						 	<h3>Lihat Pegawai Termuda dan Tertua</h3>
+						</div>
+						<form th:action="@{/pegawai/termuda-tertua}" method="GET">
+							<div class="card-body">
+								<label for="name">Pilih Instansi</label>
+								<select type="text" name="idInstansi" class="form-control">
+									
+									<option th:each="instansi:${listInstansi}" 
+									th:value="${instansi.id}"
+									th:text="${instansi.nama}"></option>
+								</select>
+								<br>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package com.apap.tugas1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.repository.JabatanDb;
 import com.apap.tugas1.service.JabatanService;
 
 @Controller
@@ -16,11 +19,9 @@ public class JabatanController {
 	@Autowired
 	private JabatanService jabatanService;
 	
-//	@RequestMapping("/")
-//	private String home() {
-//		return "home";
-//	}
-	
+	@Autowired
+	private JabatanDb jabatanDb;
+
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("jabatan", new JabatanModel());
@@ -59,7 +60,24 @@ public class JabatanController {
 	//menghapus data jabatan
 	@RequestMapping(value="/jabatan/hapus", method = RequestMethod.POST)
 	private String deleteJabatanSubmit(Long id) {
-		jabatanService.deleteJabatan(id);
-		return "add-response";
+		JabatanModel jabatan = jabatanService.findJabatanById(id);
+		
+		if (jabatan.getPegawaiList().size() < 1) {
+			jabatanService.deleteJabatan(id);
+			return "add-response";
+		}		
+		else {
+			return "error-jabatan-delete";
+		}
 	}
+	
+	//menghapus data jabatan
+	@RequestMapping(value="/jabatan/viewall", method = RequestMethod.GET)
+	private String viewAllJabatan(Model model) {
+		List<JabatanModel> listJabatan= jabatanService.listJabatan();
+		System.out.println(listJabatan.size());
+		model.addAttribute("listJabatan", listJabatan);
+		return "view-all-jabatan";
+	}
+	
 }

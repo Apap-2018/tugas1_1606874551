@@ -21,7 +21,7 @@ public class JabatanServiceImpl implements JabatanService {
 	}
 
 	@Override
-	public List<JabatanModel> getAllJabatan() {
+	public List<JabatanModel> listJabatan() {
 		return jabatanDb.findAll();
 	}
 
@@ -33,5 +33,11 @@ public class JabatanServiceImpl implements JabatanService {
 	@Override
 	public void deleteJabatan(Long id) {
 		jabatanDb.deleteById(id);
+	}
+
+	@Override
+	public JabatanDb viewAllJabatan() {
+		return jabatanDb;
+		
 	}
 }

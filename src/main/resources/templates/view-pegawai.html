@@ -5,54 +5,80 @@
 		<title  th:replace="fragments/fragment :: headerFragment (title='Data Pegawai')"></title>
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		<style>
+			table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+			td, th {
+			    border: 1px solid #dddddd;
+			    text-align: left;
+			    padding: 10px;
+			}
+			.card {
+			width:200%;
+			}
+		</style>
 	</head>
 	<nav th:replace="fragments/fragment :: navbar"></nav>s
 	<body>
-		<table>
-		    <tbody>
-		    	<tr>
-				    <td th:text="NIP"></td>
-				    <td th:text="${pegawai.nip}"></td>
-				</tr>
-				<tr>
-			    	<td th:text="Nama"></td> 
-			    	<td th:text="${pegawai.nama}"></td>
-			    </tr>
-			    <tr>
-			    	<td th:text="'Tempat Lahir'"></td>
-			    	<td th:text="${pegawai.tempatLahir}"></td>
-			    </tr>
-			    <tr>
-			    	<td th:text="'Tanggal Lahir'"></td>
-			    	<td th:text="${pegawai.tanggalLahir}"></td>
-			    </tr>
-			    <tr>
-			    	<td th:text="'Tahun Masuk'"></td>
-			    	<td th:text="${pegawai.tahunMasuk}"></td>
-			    </tr>
-			    <tr>
-			    	<td th:text="'Nama Instansi'"></td>
-			    	<td th:text="${pegawai.instansi.nama}"></td>
-			    	<td th:text="${pegawai.instansi.provinsi.nama}"></td>
-			    </tr>
-			    <tr>
-			    	<td th:text="'Jabatan'"></td>
-			    	<td>
-			    		<ul>
-			    			<li th:each="jabatan : ${pegawai.jabatanList}">
-			    				<p1 th:text= "${jabatan.nama}"></p1>
-			    			</li>
-			    		</ul>
-			    	</td>
-			    </tr>
-			    <tr>
-			    	<td th:text="Gaji"></td>
-			    	<td th:text= "${#numbers.formatDecimal(gaji, 0, 'COMMA', 2, 'POINT')}"></td>
-			    </tr>
-			</tbody>
-		</table>
-	    <td>
-	      <a th:href="@{/}">Home</a>
-	    </td>
+	<div style="padding: 32px">
+	<div class="container-fluid">
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header" >
+							<h2 th:text="'Pegawai - ' + ${pegawai.nip}"></h2>
+						</div>
+						<div class="card-body">
+							<table id="table" class="table-bordered table-hover">
+							    <tbody>
+							    	<tr>
+									    <td th:text="NIP"></td>
+									    <td th:text="${pegawai.nip}"></td>
+									</tr>
+									<tr>
+								    	<td th:text="Nama"></td> 
+								    	<td th:text="${pegawai.nama}"></td>
+								    </tr>
+								    <tr>
+								    	<td th:text="'Tempat Lahir'"></td>
+								    	<td th:text="${pegawai.tempatLahir}"></td>
+								    </tr>
+								    <tr>
+								    	<td th:text="'Tanggal Lahir'"></td>
+								    	<td th:text="${pegawai.tanggalLahir}"></td>
+								    </tr>
+								    <tr>
+								    	<td th:text="'Tahun Masuk'"></td>
+								    	<td th:text="${pegawai.tahunMasuk}"></td>
+								    </tr>
+								    <tr>
+								    	<td th:text="'Nama Instansi'"></td>
+								    	<td th:text="${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}"></td>
+								    </tr>
+								    <tr>
+								    	<td th:text="'Jabatan'"></td>
+								    	<td>
+								    		<ul>
+								    			<li th:each="jabatan : ${pegawai.jabatanList}">
+								    				<p1 th:text= "${jabatan.nama}"></p1>
+								    			</li>
+								    		</ul>
+								    	</td>
+								    </tr>
+								    <tr>
+								    	<td th:text="Gaji"></td>
+								    	<td th:text= "${#numbers.formatDecimal(gaji, 0, 'COMMA', 2, 'POINT')}"></td>
+								    </tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	  </body>
 </html>
