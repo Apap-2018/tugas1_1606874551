@@ -30,13 +30,7 @@ public class PegawaiController {
 		return "home";
 	}
 	
-	//melihat data jabatan
-	@RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
-	public String viewJabatan(@RequestParam ("idJabatan") Long id, Model model) { 
-		JabatanModel jabatan = jabatanService.findJabatanById(id);
-		model.addAttribute("jabatan", jabatan);
-		return "view-jabatan";
-	}
+
 	
 	//melihat data pegawai
 	@RequestMapping(value = "/pegawai", method = RequestMethod.GET)

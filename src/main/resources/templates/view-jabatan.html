@@ -26,8 +26,11 @@
 			    </tr>
 			</tbody>
 		</table>
-	    <td>
-	      <a th:href="@{/}">Home</a>
-	    </td>
+	    
+	    <form th:action="@{/jabatan/ubah}" method="GET">
+	    <input type="hidden" name="idJabatan" th:value="${jabatan.id}"/>
+	    <button value="submit">Ubah</button>
+	    </form>
+	    
 	  </body>
 </html>
