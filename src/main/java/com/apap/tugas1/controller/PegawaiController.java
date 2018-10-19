@@ -30,8 +30,6 @@ public class PegawaiController {
 		return "home";
 	}
 	
-
-	
 	//melihat data pegawai
 	@RequestMapping(value = "/pegawai", method = RequestMethod.GET)
 	public String viewPegawai(@RequestParam ("pegawaiNip") String pegawaiNip, Model model) {

@@ -38,23 +38,28 @@ public class JabatanController {
 	public String viewJabatan(@RequestParam ("idJabatan") Long id, Model model) { 
 		JabatanModel jabatan = jabatanService.findJabatanById(id);
 		model.addAttribute("jabatan", jabatan);
-		System.out.println("viewww");
 		return "view-jabatan";
 	}
 	
-	//mengupdate data jabatan 1
+	//mengupdate data jabatan get
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
 	private String updateJabatan(@RequestParam ("idJabatan") Long id, Model model) {
 		JabatanModel jabatan = jabatanService.findJabatanById(id);
 		model.addAttribute("jabatan", jabatan);
-		System.out.println("id :" + id);
 		return "update-jabatan";
 	}
-		
+	
+	//mengupdate data jabatan post
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
 	private String updateJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
-		System.out.println("id baru" + jabatan.getId());
 		jabatanService.addJabatan(jabatan);
+		return "add-response";
+	}
+	
+	//menghapus data jabatan
+	@RequestMapping(value="/jabatan/hapus", method = RequestMethod.POST)
+	private String deleteJabatanSubmit(Long id) {
+		jabatanService.deleteJabatan(id);
 		return "add-response";
 	}
 }
