@@ -75,6 +75,11 @@
 								    </tr>
 								</tbody>
 							</table>
+							<br>
+							<form th:action="@{/pegawai/ubah}" method="GET">
+								<input type="hidden" th:field="*{pegawai.nip}"></input>
+								<button class="btn btn-primary" type="submit">Ubah</button>
+							</form>
 						</div>
 					</div>
 				</div>

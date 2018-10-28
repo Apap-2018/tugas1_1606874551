@@ -48,7 +48,7 @@ public class PegawaiController {
 	public String viewPegawai(@RequestParam ("pegawaiNip") String pegawaiNip, Model model) {
 		PegawaiModel pegawai = pegawaiService.getDetailByNip(pegawaiNip);
 		double gaji = pegawaiService.getDetailGajiByNip(pegawaiNip);
-		System.out.println(gaji);
+//		System.out.println(gaji);
 		model.addAttribute("pegawai", pegawai);
 		model.addAttribute("gaji", gaji);
 		return "view-pegawai";
@@ -116,6 +116,50 @@ public class PegawaiController {
 		nip += "0" + counterSama;
 		//proses penambahan object pegawai ke Db
 		pegawai.setNip(nip);
+		pegawaiService.addPegawai(pegawai);
+		model.addAttribute("pegawai", pegawai);
+		return "add-response";
+	}
+	
+	//ubah pegawai
+	@RequestMapping(value = "/pegawai/ubah")
+	public String changePegawai(@RequestParam("nip") String nip, Model model) {
+		PegawaiModel pegawai = pegawaiService.getDetailByNip(nip);
+		
+		model.addAttribute("listProvinsi", provinsiService.getProvinsiList());
+		model.addAttribute("listJabatan", jabatanService.getListJabatan());
+		model.addAttribute("pegawai", pegawai);
+		return "change-pegawai";	
+	}	
+	
+	@RequestMapping(value = "/pegawai/ubah", method = RequestMethod.POST)
+	private String ubahPegawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model) {
+		String nip = "";
+		
+		nip += pegawai.getInstansi().getId();
+		System.out.println(pegawai.getInstansi().getId());
+		System.out.println(pegawai.getId());
+		
+		String[] tglLahir = pegawai.getTanggalLahir().toString().split("-");
+		String tglLahirString = tglLahir[2] + tglLahir[1] + tglLahir[0].substring(2, 4);
+		nip += tglLahirString;
+		System.out.println(pegawai.getTanggalLahir());
+		
+		nip += pegawai.getTahunMasuk();
+		System.out.println(pegawai.getTahunMasuk());
+		
+		int counterSama = 1;
+		System.out.println("BERENTI DISINI");
+		for (PegawaiModel pegawaiInstansi : pegawai.getInstansi().getPegawaiInstansi()) {
+			System.out.println("WOIII ANJENG");
+			if (pegawaiInstansi.getTahunMasuk().equals(pegawai.getTahunMasuk()) && pegawaiInstansi.getTanggalLahir().equals(pegawai.getTanggalLahir()) && pegawaiInstansi.getId() != pegawai.getId()) {
+				counterSama += 1;
+			}	
+		}
+		nip += "0" + counterSama;
+
+		pegawai.setNip(nip);
+		System.out.println(pegawai.getNip());
 		pegawaiService.addPegawai(pegawai);
 		model.addAttribute("pegawai", pegawai);
 		return "add-response";
