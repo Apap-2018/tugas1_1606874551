@@ -44,10 +44,10 @@ public class PegawaiServiceImpl implements PegawaiService {
 		return pegawaiDb.getOne(id);
 	}
 
-//	@Override
-//	//untuk menambahkan pegawai
-//	public void addPegawai(PegawaiModel pegawai) {
-//		pegawaiDb.save(pegawai);
-//		
-//	}	
+	@Override
+	//untuk menambahkan pegawai
+	public void addPegawai(PegawaiModel pegawai) {
+		pegawaiDb.save(pegawai);
+		
+	}	
 }

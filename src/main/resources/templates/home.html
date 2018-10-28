@@ -41,7 +41,6 @@
 							<div class="card-body">
 								<label for="name">Pilih Jabatan</label>
 								<select type="text" name="idJabatan" class="form-control">
-									
 									<option th:each="jabatan:${listJabatan}" 
 									th:value="${jabatan.id}"
 									th:text="${jabatan.nama}"></option>

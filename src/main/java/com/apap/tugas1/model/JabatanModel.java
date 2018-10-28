@@ -42,15 +42,33 @@ public class JabatanModel implements Serializable {
 				CascadeType.MERGE
 		},
 		mappedBy = "jabatanList")
+	
 	private List<PegawaiModel> pegawaiList;
 	
-
-	public long getId() {
+	public int jabatanSize() {
+		return pegawaiList.size();
+	}
+	
+	private int jumlahPegawai = 0;	
+	
+	public void setSizePegawai(int jumlahPegawai) {
+		this.jumlahPegawai = jumlahPegawai;
+	}
+	
+	public int getJumlahPegawai() {
+		return jumlahPegawai = jumlahPegawai;
+	}
+	
+	public long getId() {	
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public void setJumlahPegawai(int jumlahPegawai) {
+		this.jumlahPegawai = jumlahPegawai;
 	}
 
 	public String getNama() {
@@ -61,13 +79,13 @@ public class JabatanModel implements Serializable {
 		this.nama = nama;
 	}
 
-	public List<PegawaiModel> getPegawaiList() {
-		return pegawaiList;
-	}
-
-	public void setPegawaiList(List<PegawaiModel> pegawaiList) {
-		this.pegawaiList = pegawaiList;
-	}
+//	public List<PegawaiModel> getPegawaiList() {
+//		return pegawaiList;
+//	}
+//
+//	public void setPegawaiList(List<PegawaiModel> pegawaiList) {
+//		this.pegawaiList = pegawaiList;
+//	}
 
 	public String getDeskripsi() {
 		return deskripsi;

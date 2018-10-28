@@ -62,7 +62,7 @@ public class JabatanController {
 	private String deleteJabatanSubmit(Long id) {
 		JabatanModel jabatan = jabatanService.findJabatanById(id);
 		
-		if (jabatan.getPegawaiList().size() < 1) {
+		if (jabatan.jabatanSize() < 1) {
 			jabatanService.deleteJabatan(id);
 			return "add-response";
 		}		
@@ -72,12 +72,14 @@ public class JabatanController {
 	}
 	
 	//menghapus data jabatan
-	@RequestMapping(value="/jabatan/viewall", method = RequestMethod.GET)
-	private String viewAllJabatan(Model model) {
-		List<JabatanModel> listJabatan= jabatanService.listJabatan();
-		System.out.println(listJabatan.size());
+	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+	public String viewAllJabatan(Model model) {
+		List<JabatanModel> listJabatan = jabatanService.getListJabatan();
+		for(JabatanModel jabatan: listJabatan) {
+			jabatan.setSizePegawai(jabatan.jabatanSize());
+			}
 		model.addAttribute("listJabatan", listJabatan);
 		return "view-all-jabatan";
-	}
+	 }
 	
 }

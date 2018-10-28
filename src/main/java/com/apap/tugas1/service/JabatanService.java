@@ -7,7 +7,7 @@ import com.apap.tugas1.repository.JabatanDb;
 
 public interface JabatanService {
 	void addJabatan(JabatanModel jabatan);
-	List<JabatanModel> listJabatan();
+	List<JabatanModel> getListJabatan();
 	JabatanModel findJabatanById(Long id);
 	void deleteJabatan(Long id);
 	JabatanDb viewAllJabatan();

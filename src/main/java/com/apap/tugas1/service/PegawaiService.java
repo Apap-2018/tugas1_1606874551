@@ -6,5 +6,5 @@ public interface PegawaiService {
 	PegawaiModel getDetailByNip(String nip);
 	double getDetailGajiByNip(String nip);
 	PegawaiModel getPegawaiById(Long id);
-//	void addPegawai(PegawaiModel pegawai);
+	void addPegawai(PegawaiModel pegawai);
 }

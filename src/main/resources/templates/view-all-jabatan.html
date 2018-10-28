@@ -17,9 +17,10 @@
 		<table id="jabatanTable" class="display">
 			<thead>
 				<tr>
-					<th>Nama</td>
-					<th>Deskripsi</td>
-					<th>Gaji</td>
+					<th>Nama</th>
+					<th>Deskripsi</th>
+					<th>Gaji</th>
+					<th>Jumlah Pegawai</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,6 +28,7 @@
 					<td th:text="${jab.nama}"></td>
 					<td th:text="${jab.deskripsi}"></td>
 					<td th:text="${jab.gajiPokok}"></td>
+					<td th:text="${jab.jumlahPegawai}"></td>
 				</tr>
 			</tbody>
 		</table>
