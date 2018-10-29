@@ -1,5 +1,7 @@
 package com.apap.tugas1.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,10 @@ public class PegawaiServiceImpl implements PegawaiService {
 	public void addPegawai(PegawaiModel pegawai) {
 		pegawaiDb.save(pegawai);
 		
-	}	
+	}
+
+	@Override
+	public List<PegawaiModel> getListPegawai() {
+		return pegawaiDb.findAll();
+	}
 }

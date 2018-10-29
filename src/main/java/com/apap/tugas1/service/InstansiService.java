@@ -5,5 +5,5 @@ import com.apap.tugas1.model.*;
 
 public interface InstansiService {
 	InstansiModel getInstansiById(long id);
-	List<InstansiModel> listInstansi();
+	List<InstansiModel> getListInstansi();
 }

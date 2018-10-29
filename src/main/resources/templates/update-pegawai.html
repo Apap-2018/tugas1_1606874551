@@ -97,11 +97,9 @@
 												$('#instansi').html(html);
 											});
 						});
-
 		$('#provinsi')
 				.change(
 						function() {
-
 							$
 									.getJSON(
 											"http://localhost:8080/provinsi-get",
@@ -120,7 +118,6 @@
 												$('#instansi').html(html);
 											});
 						});
-
 		$('#instansi').change(function() {
 			$.getJSON("http://localhost:8080/instansi-get", {
 				instansiId : $(this).val(),
