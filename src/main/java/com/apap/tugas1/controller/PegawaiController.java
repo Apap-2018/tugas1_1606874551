@@ -37,7 +37,7 @@ public class PegawaiController {
 	//home
 	@RequestMapping("/")
 	private String home(Model model) {
-		List<InstansiModel> listInstansi = instansiService.listInstansi();
+		List<InstansiModel> listInstansi = instansiService.getListInstansi();
 		List<JabatanModel> listJabatan = jabatanService.getListJabatan();
 		model.addAttribute("listJabatan", listJabatan);
 		model.addAttribute("listInstansi", listInstansi);
@@ -119,7 +119,7 @@ public class PegawaiController {
 		pegawai.setNip(nip);
 		pegawaiService.addPegawai(pegawai);
 		model.addAttribute("pegawai", pegawai);
-		return "add-response";
+		return "add-pegawai-response";
 	}
 	
 	//ubah pegawai
@@ -150,9 +150,7 @@ public class PegawaiController {
 			System.out.println(pegawai.getTahunMasuk());
 			
 			int counterSama = 1;
-			System.out.println("BERENTI DISINI");
 			for (PegawaiModel pegawaiInstansi : pegawai.getInstansi().getPegawaiInstansi()) {
-				System.out.println("WOIII ANJENG");
 				if (pegawaiInstansi.getTahunMasuk().equals(pegawai.getTahunMasuk()) && pegawaiInstansi.getTanggalLahir().equals(pegawai.getTanggalLahir()) && pegawaiInstansi.getId() != pegawai.getId()) {
 					counterSama += 1;
 				}	

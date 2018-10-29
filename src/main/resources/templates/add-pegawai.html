@@ -25,26 +25,30 @@
 
 							<form th:action="@{/pegawai/tambah}" th:object="${pegawai}"
 								method="POST">
-								Nama: <br> <input class="form-control" type="text"
-									name="nama" /> <br> Tempat Lahir: <br> <input
-									class="form-control" type="text" name="tempatLahir" /> <br>
-								Tanggal Lahir: <br> <input class="form-control" type="date"
-									name="tanggalLahir" /> <br> Tahun Masuk: <br> <input
-									class="form-control" type="text" name="tahunMasuk" /> <br>
+								Nama: <br> <input class="form-control" type="text" name="nama" /> <br>
+								
+								Tempat Lahir: <br> 
+								<input class="form-control" type="text" name="tempatLahir" /> <br>
+								
+								Tanggal Lahir: <br> 
+								<input class="form-control" type="date" name="tanggalLahir" /> <br> 
+								
+								Tahun Masuk: <br> 
+								<input class="form-control" type="text" name="tahunMasuk" /> <br>
 
-								Provinsi: <br> <select class="form-control" id="provinsi"
-									name="provinsi">
-									<option disabled="disabled" selected="selected">--
-										Pilih Provinsi --</option>
-									<option th:each="provinsi : ${listProvinsi}"
-										th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
-								</select> <br> Instansi: <br> <select class="form-control"
-									id="instansi" name="instansi" th:value="${instansi}"
-									required="required">
-									<option disabled="disabled" selected="selected">--
-										Pilih Instansi --</option>
-								</select> <br> Jabatan: <br> (Pilih jabatan yang diinginkan,
-								bisa lebih dari satu) <br>
+								Provinsi: <br> 
+								<select class="form-control" id="provinsi" name="provinsi">
+									<option disabled="disabled" selected="selected">-- Pilih Provinsi --</option>
+									<option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+								</select> <br> 
+								
+								Instansi: <br> 
+								<select class="form-control" id="instansi" name="instansi" th:value="${instansi}" required="required">
+									<option disabled="disabled" selected="selected">-- Pilih Instansi --</option>
+								</select> <br> 
+								
+								Jabatan: <br> 
+								(Pilih jabatan yang diinginkan, bisa lebih dari satu) <br>
 
 								<table class="table table-hover table-sm">
 									<tr>
@@ -55,9 +59,10 @@
 									<tr th:each="jabatan,iterationStatus : ${listJabatan}">
 										<td th:text="${iterationStatus.count}"></td>
 										<td th:text="${jabatan.nama}"></td>
-										<td><input type="checkbox" th:field="*{jabatanList}"
-											th:value="${jabatan.id}" /> <label
-											th:for="${#ids.prev('jabatanList')}"></label></td>
+										<td>
+											<input type="checkbox" th:field="*{jabatanList}" th:value="${jabatan.id}" /> 
+											<label th:for="${#ids.prev('jabatanList')}"></label>
+										</td>
 									</tr>
 								</table>
 								<br>
@@ -104,7 +109,7 @@
 				});
 			});
 		</script>
-		<div style="padding: 32px">
+		</div>
 </body>
 
 </html>

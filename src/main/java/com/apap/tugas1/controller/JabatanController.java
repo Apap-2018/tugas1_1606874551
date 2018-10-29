@@ -31,7 +31,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.POST)
 	private String addJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
 		jabatanService.addJabatan(jabatan);
-		return "add-response";
+		return "add-jabatan-response";
 	}
 	
 	//melihat data jabatan
@@ -54,7 +54,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
 	private String updateJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
 		jabatanService.addJabatan(jabatan);
-		return "add-response";
+		return "update-jabatan-response";
 	}
 	
 	//menghapus data jabatan
@@ -64,7 +64,7 @@ public class JabatanController {
 		
 		if (jabatan.jabatanSize() < 1) {
 			jabatanService.deleteJabatan(id);
-			return "add-response";
+			return "delete-jabatan-response";
 		}		
 		else {
 			return "error-jabatan-delete";
